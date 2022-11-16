@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 
 app.get('/usuarios',async (req,res)=>{
     const [result]=await pool.query('select * from usuario')
-    res.json(result[0])      
+    res.json(result)      
   })
 
   app.get('/agregarusuario',async (req,res)=>{
@@ -28,7 +28,7 @@ app.get('/usuarios',async (req,res)=>{
     const correo=req.query.correo
     const tienda=req.query.tienda  
     const [result]=await pool.query(`INSERT INTO usuario (nombre, contrasena, correo, tienda) VALUES ('${nombre}', '${contrasena}', '${correo}','${tienda}')`)
-    res.json(result[0])      
+    res.json(result)      
   })
 
 app.listen(process.env.PORT || 3000)
